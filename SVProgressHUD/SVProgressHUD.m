@@ -745,7 +745,7 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
 #endif
     
     // Get the currently active frame of the display (depends on orientation)
-    CGRect orientationFrame = self.bounds;
+    CGRect orientationFrame = [[UIScreen mainScreen] bounds];
 
 #if !defined(SV_APP_EXTENSIONS) && TARGET_OS_IOS
     CGRect statusBarFrame = UIApplication.sharedApplication.statusBarFrame;
@@ -778,7 +778,7 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     activeHeight -= keyboardHeight;
     
     CGFloat posX = CGRectGetWidth(orientationFrame)/2.0f;
-    CGFloat posY = floorf(activeHeight*0.45f);
+    CGFloat posY = floorf(activeHeight*0.50f);
 
     CGFloat rotateAngle = 0.0;
     CGPoint newCenter = CGPointMake(posX, posY);
