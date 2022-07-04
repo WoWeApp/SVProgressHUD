@@ -405,8 +405,8 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     BOOL isProgressRingUsed = self.progress >= 0;
     
     if (self.defaultAnimationType == SVProgressHUDAnimationTypeCustom && !imageUsed && !isProgressRingUsed){
-        hudWidth = CGRectGetWidth(self.loadingImageView.bounds) + 10;
-        hudHeight = CGRectGetHeight(self.loadingImageView.bounds) + 10;
+        hudWidth = CGRectGetWidth(self.loadingImageView.bounds) - 100;
+        hudHeight = CGRectGetHeight(self.loadingImageView.bounds) - 100;
         stringAndContentHeightBuffer = CGRectGetHeight(self.loadingImageView.bounds) + 30;
     }
     
@@ -457,24 +457,24 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     }
     
     // Update values on subviews
-    self.hudView.bounds = CGRectMake(0.0f, 0.0f, MAX(self.minimumSize.width, hudWidth), MAX(self.minimumSize.height, hudHeight));
+    self.hudView.bounds = CGRectMake(0.0f, 0.0f, MAX(self.minimumSize.width - 100, hudWidth), MAX(self.minimumSize.height, hudHeight));
     labelRect.size.width += MAX(0, self.minimumSize.width - hudWidth);
     [self updateBlurBounds];
     
     if(string) {
         self.imageView.center = CGPointMake(CGRectGetWidth(self.hudView.bounds)/2, 36.0f);
     } else {
-       	self.imageView.center = CGPointMake(CGRectGetWidth(self.hudView.bounds)/2, CGRectGetHeight(self.hudView.bounds)/2);
+        self.imageView.center = CGPointMake(CGRectGetWidth(self.hudView.bounds)/2, CGRectGetHeight(self.hudView.bounds)/2);
     }
 
-	self.statusLabel.hidden = NO;
-	self.statusLabel.frame = labelRect;
+    self.statusLabel.hidden = NO;
+    self.statusLabel.frame = labelRect;
     
     // Animate value update
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     
-	if(string) {
+    if(string) {
         if(self.defaultAnimationType == SVProgressHUDAnimationTypeFlat) {
             SVIndefiniteAnimatedView *indefiniteAnimationView = (SVIndefiniteAnimatedView*)self.indefiniteAnimatedView;
             indefiniteAnimationView.radius = self.ringRadius;
@@ -492,7 +492,7 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
         if(self.progress != SVProgressHUDUndefinedProgress) {
             self.backgroundRingView.center = self.ringView.center = CGPointMake((CGRectGetWidth(self.hudView.bounds)/2), 36.0f);
         }
-	} else {
+    } else {
         if(self.defaultAnimationType == SVProgressHUDAnimationTypeFlat) {
             SVIndefiniteAnimatedView *indefiniteAnimationView = (SVIndefiniteAnimatedView*)self.indefiniteAnimatedView;
             indefiniteAnimationView.radius = self.ringNoTextRadius;
@@ -1266,7 +1266,7 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     return tintedImage;
 }
 
-- (BOOL)isClear { // used for iOS 7 and above...
+- (BOOL)isClear { // used for iOS 7 and above
     return (self.defaultMaskType == SVProgressHUDMaskTypeClear || self.defaultMaskType == SVProgressHUDMaskTypeNone);
 }
 
