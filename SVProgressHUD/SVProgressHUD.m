@@ -1266,7 +1266,7 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     return tintedImage;
 }
 
-- (BOOL)isClear { // used for iOS 7 and above
+- (BOOL)isClear { // used for iOS 7 and above...
     return (self.defaultMaskType == SVProgressHUDMaskTypeClear || self.defaultMaskType == SVProgressHUDMaskTypeNone);
 }
 
